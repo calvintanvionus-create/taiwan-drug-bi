@@ -1,0 +1,4 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10401-10403.csv,12406,9858,毒品,2007-08-06,2007,3,8,0960806,境外(外國),,外國,機場,,,2,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10501-10503.csv,7570,6118,毒品,2007-05-01,2007,2,5,0960501,嘉義縣,民雄鄉,嘉義縣民雄鄉,普通住宅(一、二層樓),,,1,甲基安非他命,甲基安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10804-10806.csv,13219,10609,毒品,2007-09-13,2007,3,9,0960913,臺北市,大同區,臺北市大同區,公路(省、縣、鄉、鎮道,,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False

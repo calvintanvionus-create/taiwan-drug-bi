@@ -1,0 +1,2 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10804-10806.csv,12291,9848,毒品,2001-10-23,2001,4,10,0901023,澎湖縣,馬公市,澎湖縣馬公市,河(中)海(堤)邊,,,1,海洛因,海洛因,第一級,0.0,0.0,False,True,True,False

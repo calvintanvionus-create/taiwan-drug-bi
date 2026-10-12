@@ -1,0 +1,2 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10707-10709.csv,14379,11756,毒品,1996-10-19,1996,4,10,0851019,金門縣,金城鎮,金門縣金城鎮,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False

@@ -1,0 +1,3 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10504-10506.csv,15573,12580,毒品,2004-01-01,2004,1,1,0930101,新北市,板橋區,新北市板橋區,公路(省、縣、鄉、鎮道,,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10607-10609.csv,18519,14846,毒品,2004-12-31,2004,4,12,931231,雲林縣,虎尾鎮,雲林縣虎尾鎮,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False

@@ -1,0 +1,2 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10604-10606.csv,1360,1113,毒品,1917-05-01,1917,2,5,0060501,新竹縣,湖口鄉,新竹縣湖口鄉,公路(省、縣、鄉、鎮道,,,1,安非他命,安非他命,第二級,0.01,1e-05,False,True,False,False

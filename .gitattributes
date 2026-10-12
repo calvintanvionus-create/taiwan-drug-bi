@@ -1,0 +1,2 @@
+# keep raw downloads byte-for-byte (no CRLF/LF conversion)
+raw/** -text

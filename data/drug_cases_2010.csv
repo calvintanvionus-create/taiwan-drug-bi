@@ -1,0 +1,7 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10407-10409.csv,743,584,毒品,2010-06-01,2010,2,6,0990601,雲林縣,臺西鄉,雲林縣臺西鄉,普通住宅(一、二層樓),,房間（起居室）,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10407-10409.csv,3433,2793,毒品,2010-12-15,2010,4,12,0991215,新北市,汐止區,新北市汐止區,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10504-10506.csv,1348,1091,毒品,2010-06-30,2010,2,6,0990630,桃園市,桃園區,桃園市桃園區,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10607-10609.csv,15820,12697,毒品,2010-08-10,2010,3,8,990810,高雄市,美濃區,高雄市美濃區,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10610-10612.csv,16060,12974,毒品,2010-04-07,2010,2,4,0990407,彰化縣,員林市,彰化縣員林市,普通住宅(一、二層樓),,,1,假麻黃鹼,假麻黃鹼,未分級,243.69,0.24369,False,True,False,False
+npa_drug_crime_10710-10712.csv,266,223,毒品,2010-01-13,2010,1,1,0990113,彰化縣,秀水鄉,彰化縣秀水鄉,公路(省、縣、鄉、鎮道,,汽車上,1,安非他命,安非他命,第二級,0.13,0.00013,False,True,False,False

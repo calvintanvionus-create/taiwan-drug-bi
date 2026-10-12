@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>臺灣各縣市查獲毒品的時間與地區變化</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+/* Palette: lab-report paper + forensic ink; level colours run light→heavy with severity. */
+:root{
+  --bg:#E7ECEE; --panel:#F6F9F9; --ink:#14262E; --ink-2:#4A5E67; --rule:#B9C6CB;
+  --teal:#1F6F78; --teal-d:#0F4C57; --pick:#D9622B; --warn:#8C1D40;
+  --l1:#8C1D40; --l2:#D9622B; --l3:#E2A72E; --l4:#5B8E7D; --l0:#98A5AB;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.7 var(--sans);-webkit-text-size-adjust:100%}
+a{color:var(--teal-d)}
+:focus-visible{outline:3px solid var(--pick);outline-offset:2px}
+header.top{padding:28px 20px 8px;max-width:1320px;margin:0 auto}
+h1{font:900 clamp(26px,4.2vw,44px)/1.2 var(--serif);margin:0 0 6px;letter-spacing:.02em}
+.sub{margin:0;color:var(--ink-2);max-width:60ch}
+#libwarn{display:none;margin:12px 0 0;padding:8px 12px;background:#FBE3D6;border-left:4px solid var(--pick);font-weight:500}
+.layout{max-width:1320px;margin:0 auto;padding:16px 20px 40px;display:grid;grid-template-columns:290px minmax(0,1fr);gap:24px;align-items:start}
+/* filters */
+details.filters{background:var(--panel);border:1.5px solid var(--ink);border-radius:3px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
+details.filters>summary{list-style:none;cursor:pointer;padding:12px 16px;font:700 17px var(--serif);border-bottom:1.5px solid var(--ink)}
+details.filters>summary::-webkit-details-marker{display:none}
+details.filters>summary::after{content:"展開 ▾";float:right;font:500 13px var(--sans);color:var(--teal-d);margin-top:3px}
+details.filters[open]>summary::after{content:"收合 ▴"}
+@media (min-width:901px){details.filters>summary::after,details.filters[open]>summary::after{content:""}}
+.fbody{padding:6px 16px 16px}
+.fg{padding:12px 0;border-bottom:1px dashed var(--rule)}
+.fg:last-child{border-bottom:0}
+.fg h2{font:700 14px var(--sans);margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+.fg h2 small{font-weight:400;color:var(--ink-2)}
+.linkbtn{background:none;border:0;color:var(--teal-d);text-decoration:underline;cursor:pointer;font:inherit;font-size:13px;padding:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1.2px solid var(--ink-2);background:transparent;color:var(--ink);border-radius:999px;padding:3px 10px;font:inherit;font-size:13px;line-height:1.5;cursor:pointer;transition:background .15s,color .15s}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.seg{display:inline-flex;border:1.2px solid var(--ink);border-radius:3px;overflow:hidden}
+.seg button{border:0;background:transparent;font:inherit;font-size:13px;padding:4px 12px;cursor:pointer;color:var(--ink)}
+.seg button+button{border-left:1.2px solid var(--ink)}
+.seg button[aria-pressed=true]{background:var(--teal-d);color:#fff}
+/* dual slider */
+.range{position:relative;height:30px;margin:2px 4px 0}
+.range .track{position:absolute;left:0;right:0;top:13px;height:4px;background:var(--rule);border-radius:2px}
+.range .fill{position:absolute;top:13px;height:4px;background:var(--teal);border-radius:2px}
+.range input{position:absolute;left:-4px;width:calc(100% + 8px);top:3px;margin:0;height:24px;background:none;pointer-events:none;-webkit-appearance:none;appearance:none}
+.range input::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--panel);border:3px solid var(--teal-d);cursor:grab}
+.range input::-moz-range-thumb{pointer-events:auto;width:14px;height:14px;border-radius:50%;background:var(--panel);border:3px solid var(--teal-d);cursor:grab}
+.range input::-webkit-slider-runnable-track{background:none}
+.range input::-moz-range-track{background:none}
+.rlabel{display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+/* main */
+main{display:grid;gap:20px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tag{position:relative;background:var(--panel);border:1.5px solid var(--ink);border-radius:4px 16px 16px 4px;padding:14px 14px 12px 34px;min-width:0}
+.tag::before{content:"";position:absolute;left:11px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:1.5px solid var(--ink)}
+.tag .k{font-size:13px;color:var(--ink-2)}
+.tag .v{font:900 clamp(22px,2.6vw,30px)/1.25 var(--serif);overflow-wrap:anywhere}
+.tag .u{font:500 14px var(--sans);margin-left:3px;color:var(--ink-2)}
+.tag .s{font-size:12.5px;color:var(--ink-2)}
+.row2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+.card{background:var(--panel);border:1.5px solid var(--ink);border-radius:3px;padding:14px 16px 12px;min-width:0;position:relative}
+.card header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.card h3{font:700 19px/1.3 var(--serif);margin:0}
+.card .hint{font-size:12.5px;color:var(--ink-2);margin:2px 0 0}
+.chart{width:100%;height:340px}
+.foot{font-size:12.5px;color:var(--ink-2);margin:8px 0 0;padding-top:6px;border-top:1px dashed var(--rule)}
+.empty{display:none;padding:70px 10px;text-align:center;color:var(--ink-2);font-weight:500}
+.card.noData .empty{display:block}
+.card.noData .chart{display:none}
+/* footer */
+footer{max-width:1320px;margin:0 auto;padding:0 20px 48px}
+footer .box{background:var(--panel);border:1.5px solid var(--ink);border-radius:3px;padding:18px 20px}
+footer h2{font:700 20px var(--serif);margin:0 0 8px}
+footer dl{margin:0;display:grid;grid-template-columns:7em 1fr;gap:6px 14px}
+footer dt{font-weight:700}
+footer dd{margin:0}
+footer ul{margin:0;padding-left:1.2em}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);padding:12px 16px 32px}
+  details.filters{position:static;max-height:none}
+  .row2{grid-template-columns:minmax(0,1fr)}
+  header.top{padding:20px 16px 4px}
+  footer{padding:0 16px 40px}
+  footer dl{grid-template-columns:1fr}
+  footer dt{margin-top:6px}
+}
+@media (min-width:901px){details.filters>summary{pointer-events:none;cursor:default}}
+@media (max-width:520px){.kpis{gap:10px}.tag{padding:12px 10px 10px 28px}.tag::before{left:9px}.chart{height:300px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>臺灣各縣市查獲毒品的時間與地區變化</h1>
+  <p class="sub" id="subline">資料載入中…</p>
+  <p id="libwarn" role="alert">圖表元件（ECharts）載入失敗，請連上網路後重新整理；上方數字與篩選仍可使用。</p>
+</header>
+
+<div class="layout">
+  <details class="filters" id="filters" open>
+    <summary>篩選條件</summary>
+    <div class="fbody">
+      <div class="fg">
+        <h2>期間（以季計）</h2>
+        <div class="rlabel"><span id="rlo"></span><span id="rhi"></span></div>
+        <div class="range" id="range">
+          <div class="track"></div><div class="fill" id="rfill"></div>
+          <input type="range" id="pLo" min="0" step="1" aria-label="期間起點">
+          <input type="range" id="pHi" min="0" step="1" aria-label="期間終點">
+        </div>
+        <div class="hint" id="rcount" style="font-size:12.5px;color:var(--ink-2)"></div>
+      </div>
+      <div class="fg">
+        <h2>縣市 <small><span id="cCount">全部</span> <button class="linkbtn" id="cClear" type="button">清除</button></small></h2>
+        <div class="chips" id="cChips"></div>
+      </div>
+      <div class="fg">
+        <h2>毒品級別 <small><button class="linkbtn" id="lClear" type="button">清除</button></small></h2>
+        <div class="chips" id="lChips"></div>
+      </div>
+      <div class="fg">
+        <h2>指標</h2>
+        <div class="seg" id="metricSeg" role="group" aria-label="指標">
+          <button type="button" data-v="n" aria-pressed="true">查獲件數</button>
+          <button type="button" data-v="w" aria-pressed="false">查獲重量（公斤）</button>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <main>
+    <section class="kpis" aria-label="重點數字">
+      <div class="tag"><div class="k">期間內總件數</div><div class="v" id="kN">—</div><div class="s" id="kNs"></div></div>
+      <div class="tag"><div class="k">總重量（排除重量 0）</div><div class="v" id="kW">—</div><div class="s" id="kWs"></div></div>
+      <div class="tag"><div class="k">最多的縣市</div><div class="v" id="kC">—</div><div class="s" id="kCs"></div></div>
+      <div class="tag"><div class="k">最多的品項</div><div class="v" id="kD">—</div><div class="s" id="kDs"></div></div>
+    </section>
+
+    <section class="card" id="cardTrend">
+      <header>
+        <div><h3>查獲趨勢</h3><p class="hint" id="trendHint"></p></div>
+        <div class="seg" id="trendSeg" role="group" aria-label="圖表類型">
+          <button type="button" data-v="line" aria-pressed="true">折線</button>
+          <button type="button" data-v="bar" aria-pressed="false">堆疊長條（依級別）</button>
+        </div>
+      </header>
+      <div class="chart" id="chTrend" role="img" aria-label="查獲趨勢圖"></div>
+      <div class="empty">這組條件下沒有資料，請放寬期間、縣市或級別。</div>
+      <p class="foot">每一季的數字＝發生日期落在該季的紀錄加總。「件」是一筆「案件 × 毒品品項」紀錄，一個案件查到兩種毒品會算兩件。「2013前」是發生日期早於 2014 年的少量舊案或登打錯誤。</p>
+    </section>
+
+    <div class="row2">
+      <section class="card" id="cardCounty">
+        <header><div><h3>縣市排行</h3><p class="hint">點長條，可把縣市加進或移出篩選。</p></div></header>
+        <div class="chart" id="chCounty" style="height:690px" role="img" aria-label="縣市排行圖"></div>
+        <div class="empty">這組條件下沒有資料，請放寬期間、縣市或級別。</div>
+        <p class="foot">依目前期間與級別加總，不受「縣市」篩選影響，已選縣市以橘色標示。「境外」「海域」「無法辨識」為原始地址無法歸入縣市的紀錄。</p>
+      </section>
+      <section class="card" id="cardDrug">
+        <header>
+          <div><h3>品項排行</h3><p class="hint">前 10 名，其餘併為「其他」。</p></div>
+          <div class="seg" id="drugSeg" role="group" aria-label="圖表類型">
+            <button type="button" data-v="bar" aria-pressed="true">長條</button>
+            <button type="button" data-v="pie" aria-pressed="false">圓餅</button>
+          </div>
+        </header>
+        <div class="chart" id="chDrug" style="height:430px" role="img" aria-label="品項排行圖"></div>
+        <div class="empty">這組條件下沒有資料，請放寬期間、縣市或級別。</div>
+        <p class="foot">各縣市只保留件數前 15 名的品項，其餘在資料處理時已併成「其他品項」，因此全國的小品項合計會略低，「其他」包含這些。</p>
+      </section>
+    </div>
+
+    <section class="card" id="cardHeat">
+      <header><div><h3>縣市 × 年 熱度</h3><p class="hint" id="heatHint"></p></div></header>
+      <div class="chart" id="chHeat" role="img" aria-label="縣市與年份熱度圖"></div>
+      <div class="empty">這組條件下沒有資料，請放寬期間、縣市或級別。</div>
+      <p class="foot">顏色越深，該縣市該年的數字越大；色階上限取第 95 百分位，超過的格子顏色相同，滑過格子可看實際數字。縣市依期間合計由高到低排列，未選縣市時顯示全部。</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="box">
+    <h2>資料說明</h2>
+    <dl>
+      <dt>資料來源</dt><dd>政府資料開放平臺「毒品犯罪資料」（dataset 57268），內政部警政署提供，每季初步統計，僅供參考。</dd>
+      <dt>資料期間</dt><dd id="fPeriod"></dd>
+      <dt>限制說明</dt>
+      <dd><ul>
+        <li>約一半紀錄的重量為 0（多半是未秤重或未登記），已在重量指標中排除；件數指標則全數計入。</li>
+        <li>毒品級別依現行（2026）分級標示，不是案發當時的級別；部分品項查無分級，標為「未分級」。</li>
+        <li>合併季檔時，已刪除同一檔內完全重複的紀錄。</li>
+        <li>縣市無法辨識的紀錄歸為「無法辨識」；發生在國外或海上的另列「境外」「海域」。</li>
+        <li>「件」是「案件 × 毒品品項」紀錄，不等於去重後的案件數。</li>
+      </ul></dd>
+      <dt>原始碼</dt><dd><a id="gh" href="https://github.com/calvintanvionus-create/taiwan-drug-bi" target="_blank" rel="noopener">github.com/calvintanvionus-create/taiwan-drug-bi</a></dd>
+    </dl>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js" onerror="document.getElementById('libwarn').style.display='block'"></script>
+<script>
+(function(){
+"use strict";
+var D = window.DRUG_DATA;
+if(!D){ document.getElementById('subline').textContent='找不到 data.js，請確認它和 index.html 在同一個資料夾。'; return; }
+var hasChart = typeof window.echarts !== 'undefined';
+if(!hasChart) document.getElementById('libwarn').style.display='block';
+
+var $ = function(id){return document.getElementById(id)};
+var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var P = D.periods, C = D.counties, L = D.levels, DR = D.drugs, ROWS = D.rows;
+var OTHER = D.meta.other_label;
+var LCOL = ['#8C1D40','#D9622B','#E2A72E','#5B8E7D','#98A5AB'];
+var INK='#14262E', INK2='#4A5E67', TEAL='#1F6F78', PICK='#D9622B';
+var FONT = '"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif';
+
+var st = { lo:0, hi:P.length-1, counties:new Set(), levels:new Set(), metric:'n', trend:'line', drug:'bar' };
+var fmt0 = function(v){return Math.round(v).toLocaleString('zh-TW')};
+var fmt1 = function(v){return v.toLocaleString('zh-TW',{maximumFractionDigits:1})};
+var unit = function(){return st.metric==='n'?'件':'公斤'};
+var val = function(n,w){return st.metric==='n'?n:w/1000};
+var vfmt = function(v){return st.metric==='n'?fmt0(v):fmt1(v)};
+var yearOf = function(i){var p=P[i];return p.indexOf('Q')>0?p.slice(0,4):p};
+
+/* ---- period text, subline, footer (derived from data) ---- */
+var firstReal = P.findIndex(function(p){return p.indexOf('Q')>0});
+var pre = 0; ROWS.forEach(function(r){ if(r[0]===0 && P[0]==='2013前') pre+=r[4]; });
+var total = ROWS.reduce(function(s,r){return s+r[4]},0);
+$('subline').textContent = '依發生日期統計 '+P[firstReal]+' 至 '+P[P.length-1]+' 的警政署毒品案件紀錄，共 '+fmt0(total)+' 筆；調整左側條件，所有圖表會一起更新。';
+$('fPeriod').textContent = P[firstReal]+' 至 '+P[P.length-1]+'（發生日期，按季）；另有 '+fmt0(pre)+' 筆發生日期早於 2014 年的紀錄，併為「2013前」。';
+
+/* ---- filter UI ---- */
+var pLo=$('pLo'), pHi=$('pHi');
+[pLo,pHi].forEach(function(e){e.max=P.length-1});
+pLo.value=0; pHi.value=P.length-1;
+function syncRange(src){
+  var lo=+pLo.value, hi=+pHi.value;
+  if(lo>hi){ if(src===pLo){lo=hi;pLo.value=lo}else{hi=lo;pHi.value=hi} }
+  st.lo=lo; st.hi=hi;
+  var m=P.length-1||1;
+  $('rfill').style.left=(lo/m*100)+'%'; $('rfill').style.right=(100-hi/m*100)+'%';
+  $('rlo').textContent=P[lo]; $('rhi').textContent=P[hi];
+  $('rcount').textContent='共 '+(hi-lo+1)+' 期';
+}
+pLo.addEventListener('input',function(){syncRange(pLo);update()});
+pHi.addEventListener('input',function(){syncRange(pHi);update()});
+
+function mkChip(parent,label,pressed,onClick,color){
+  var b=document.createElement('button'); b.type='button'; b.className='chip';
+  b.setAttribute('aria-pressed',pressed?'true':'false');
+  if(color){var d=document.createElement('span');d.className='dot';d.style.background=color;b.appendChild(d)}
+  b.appendChild(document.createTextNode(label)); b.addEventListener('click',onClick); parent.appendChild(b); return b;
+}
+var cBtns={}, lBtns=[];
+var GEO=['基隆市','臺北市','新北市','桃園市','新竹市','新竹縣','苗栗縣','臺中市','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','臺南市','高雄市','屏東縣','宜蘭縣','花蓮縣','臺東縣','澎湖縣','金門縣','連江縣','境外(外國)','海域','無法辨識'];
+C.map(function(n,i){return i}).sort(function(a,b){var x=GEO.indexOf(C[a]),y=GEO.indexOf(C[b]);return (x<0?99:x)-(y<0?99:y)}).forEach(function(i){
+  cBtns[i]=mkChip($('cChips'),C[i],false,function(){toggleCounty(i)}); });
+L.forEach(function(name,i){ lBtns[i]=mkChip($('lChips'),name,false,function(){
+  st.levels.has(i)?st.levels.delete(i):st.levels.add(i); update();
+},LCOL[i]); });
+function toggleCounty(i){ st.counties.has(i)?st.counties.delete(i):st.counties.add(i); update(); }
+$('cClear').addEventListener('click',function(){st.counties.clear();update()});
+$('lClear').addEventListener('click',function(){st.levels.clear();update()});
+function seg(id,key){
+  var el=$(id); el.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    st[key]=b.dataset.v;
+    Array.prototype.forEach.call(el.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    update(key==='trend'||key==='drug');
+  });
+}
+seg('metricSeg','metric'); seg('trendSeg','trend'); seg('drugSeg','drug');
+
+var fd=$('filters'), mq=window.matchMedia('(min-width: 901px)');
+function setOpen(){ fd.open = mq.matches ? true : fd.open; }
+fd.open = mq.matches; (mq.addEventListener?mq.addEventListener('change',setOpen):mq.addListener(setOpen));
+fd.addEventListener('toggle',function(){ if(mq.matches && !fd.open) fd.open=true; });
+
+/* ---- charts ---- */
+var ch={};
+if(hasChart){
+  ['Trend','County','Drug','Heat'].forEach(function(k){ ch[k]=echarts.init($('ch'+k),null,{renderer:'canvas'}); });
+  window.addEventListener('resize',function(){Object.keys(ch).forEach(function(k){ch[k].resize()})});
+  ch.County.on('click',function(p){ if(p.data && p.data.idx!=null) toggleCounty(p.data.idx); });
+}
+var base={ animation:!RM, animationDuration:500, animationDurationUpdate:RM?0:600, animationEasingUpdate:'cubicOut', textStyle:{fontFamily:FONT,color:INK} };
+function axisName(t){ return {name:t, nameTextStyle:{color:INK2,fontSize:12}}; }
+function setNoData(id,none){ $(id).classList.toggle('noData',none); }
+
+/* ---- aggregation ---- */
+function passBase(r){ return r[0]>=st.lo && r[0]<=st.hi && (st.levels.size===0 || st.levels.has(r[2])); }
+function update(replace){
+  C.forEach(function(_,i){cBtns[i].setAttribute('aria-pressed',st.counties.has(i)?'true':'false')});
+  L.forEach(function(_,i){lBtns[i].setAttribute('aria-pressed',st.levels.has(i)?'true':'false')});
+  $('cCount').textContent = st.counties.size? ('已選 '+st.counties.size) : '全部';
+
+  var n=0,nw=0,w=0;
+  var byP=new Array(P.length).fill(0), byPL=P.map(function(){return new Array(L.length).fill(0)});
+  var cAll={}, dMap={}, heat={}; // cAll ignores county filter
+  ROWS.forEach(function(r){
+    if(!passBase(r)) return;
+    var v=val(r[4],r[6]);
+    cAll[r[1]]=(cAll[r[1]]||0)+v;
+    if(st.counties.size && !st.counties.has(r[1])) return;
+    n+=r[4]; nw+=r[5]; w+=r[6];
+    byP[r[0]]+=v; byPL[r[0]][r[2]]+=v;
+    dMap[r[3]]=(dMap[r[3]]||0)+v;
+    var key=yearOf(r[0])+'|'+r[1]; heat[key]=(heat[key]||0)+v;
+  });
+  var has = (st.metric==='n'? n : w)>0;
+  var u=unit();
+
+  /* KPI */
+  $('kN').innerHTML = has||n? fmt0(n)+'<span class="u">件</span>':'—';
+  $('kNs').textContent = n? ('其中 '+fmt0(nw)+' 件有紀錄重量'):'';
+  $('kW').innerHTML = w? fmt1(w/1000)+'<span class="u">公斤</span>':'—';
+  $('kWs').textContent = w? ('平均每件 '+fmt1(w/Math.max(nw,1))+' 公克'):'';
+  var selC = Object.keys(cAll).map(function(k){return [+k,cAll[k]]}).filter(function(x){return !st.counties.size||st.counties.has(x[0])}).sort(function(a,b){return b[1]-a[1]});
+  var sumC = selC.reduce(function(s,x){return s+x[1]},0);
+  $('kC').textContent = selC.length&&selC[0][1]>0? C[selC[0][0]]:'—';
+  $('kCs').textContent = selC.length&&selC[0][1]>0? (vfmt(selC[0][1])+' '+u+'，占 '+(selC[0][1]/sumC*100).toFixed(0)+'%'):'';
+  var dl = Object.keys(dMap).map(function(k){return [+k,dMap[k]]}).filter(function(x){return DR[x[0]]!==OTHER}).sort(function(a,b){return b[1]-a[1]});
+  var sumD = Object.keys(dMap).reduce(function(s,k){return s+dMap[k]},0);
+  $('kD').textContent = dl.length&&dl[0][1]>0? DR[dl[0][0]]:'—';
+  $('kDs').textContent = dl.length&&dl[0][1]>0? (vfmt(dl[0][1])+' '+u+'，占 '+(dl[0][1]/sumD*100).toFixed(0)+'%'):'';
+  $('kD').style.fontSize = $('kD').textContent.length>9?'18px':'';
+
+  ['cardTrend','cardCounty','cardDrug','cardHeat'].forEach(function(id){setNoData(id,!has)});
+  $('trendHint').textContent = (st.metric==='n'?'查獲件數（件）':'查獲重量（公斤，不含重量為 0 的紀錄）')+'，'+P[st.lo]+' 至 '+P[st.hi];
+  if(!hasChart || !has) return;
+  Object.keys(ch).forEach(function(k){ch[k].resize()});
+
+  var rep = replace?{notMerge:true}:{};
+  /* trend */
+  var xs=[], i;
+  for(i=st.lo;i<=st.hi;i++) xs.push(i);
+  var xl=xs.map(function(i){return P[i]});
+  var tipFmt=function(ps){
+    var h='<b>'+ps[0].axisValueLabel+'</b>', t=0;
+    ps.forEach(function(p){ if(p.value){ h+='<br>'+p.marker+p.seriesName+'：'+vfmt(p.value)+' '+u; t+=p.value; } });
+    if(ps.length>1) h+='<br><b>合計：'+vfmt(t)+' '+u+'</b>';
+    return h;
+  };
+  var series;
+  if(st.trend==='line'){
+    series=[{name:'全部',type:'line',smooth:.2,symbolSize:5,showSymbol:xs.length<30,data:xs.map(function(i){return byP[i]}),
+      lineStyle:{width:2.5,color:TEAL},itemStyle:{color:TEAL},areaStyle:{color:'rgba(31,111,120,.14)'}}];
+  } else {
+    series=L.map(function(name,li){return {name:name,type:'bar',stack:'t',barMaxWidth:26,itemStyle:{color:LCOL[li]},
+      data:xs.map(function(i){return byPL[i][li]})}});
+  }
+  ch.Trend.setOption(Object.assign({},base,{
+    grid:{left:64,right:16,top:st.trend==='bar'?36:20,bottom:58},
+    legend:{show:st.trend==='bar',top:0,textStyle:{color:INK}},
+    tooltip:{trigger:'axis',formatter:tipFmt},
+    xAxis:Object.assign({type:'category',data:xl,axisLabel:{color:INK2,rotate:xs.length>24?45:0,hideOverlap:true}},axisName('年季'),{nameLocation:'middle',nameGap:42}),
+    yAxis:Object.assign({type:'value',axisLabel:{color:INK2},splitLine:{lineStyle:{color:'#D3DDE0'}}},axisName(st.metric==='n'?'查獲件數（件）':'查獲重量（公斤）'),{nameLocation:'middle',nameGap:48}),
+    series:series
+  }),Object.assign({replaceMerge:['series']},rep));
+
+  /* county ranking (ignores county filter; selected highlighted) */
+  var cl=Object.keys(cAll).map(function(k){return [+k,cAll[k]]}).filter(function(x){return x[1]>0}).sort(function(a,b){return b[1]-a[1]});
+  ch.County.setOption(Object.assign({},base,{
+    grid:{left:84,right:56,top:8,bottom:44},
+    tooltip:{trigger:'item',formatter:function(p){return '<b>'+p.name+'</b><br>'+vfmt(p.value)+' '+u+(p.data.sel?'（已選，點擊移除）':'（點擊加入篩選）')}},
+    xAxis:Object.assign({type:'value',axisLabel:{color:INK2},splitLine:{lineStyle:{color:'#D3DDE0'}}},axisName(st.metric==='n'?'查獲件數（件）':'查獲重量（公斤）'),{nameLocation:'middle',nameGap:28}),
+    yAxis:{type:'category',inverse:true,data:cl.map(function(x){return C[x[0]]}),axisLabel:{color:INK,interval:0},axisTick:{show:false}},
+    series:[{type:'bar',barWidth:'62%',cursor:'pointer',
+      label:{show:true,position:'right',color:INK2,fontSize:11,formatter:function(p){return vfmt(p.value)}},
+      data:cl.map(function(x){var sel=st.counties.has(x[0]);return {value:x[1],idx:x[0],sel:sel,itemStyle:{color:st.counties.size?(sel?PICK:'#9FB6BB'):TEAL}}})}]
+  }),{replaceMerge:['series']});
+
+  /* drug ranking */
+  var top=dl.slice(0,10), rest=sumD-top.reduce(function(s,x){return s+x[1]},0);
+  var items=top.map(function(x){return {name:DR[x[0]],value:x[1]}});
+  if(rest>0) items.push({name:'其他',value:rest});
+  var pal=['#14262E','#1F6F78','#D9622B','#E2A72E','#5B8E7D','#8C1D40','#6C8FA3','#B77A9A','#7C9A3C','#C9A27E','#98A5AB'];
+  var dopt;
+  if(st.drug==='bar'){
+    dopt={grid:{left:150,right:64,top:8,bottom:44},
+      tooltip:{trigger:'item',formatter:function(p){return '<b>'+p.name+'</b><br>'+vfmt(p.value)+' '+u+'，占 '+(p.value/sumD*100).toFixed(1)+'%'}},
+      xAxis:Object.assign({type:'value',splitNumber:3,axisLabel:{color:INK2,hideOverlap:true},splitLine:{lineStyle:{color:'#D3DDE0'}}},axisName(st.metric==='n'?'查獲件數（件）':'查獲重量（公斤）'),{nameLocation:'middle',nameGap:28}),
+      yAxis:{type:'category',inverse:true,data:items.map(function(x){return x.name}),axisLabel:{color:INK,interval:0,width:140,overflow:'truncate'},axisTick:{show:false}},
+      series:[{type:'bar',barWidth:'62%',label:{show:true,position:'right',color:INK2,fontSize:11,formatter:function(p){return vfmt(p.value)}},
+        data:items.map(function(x){return {value:x.value,itemStyle:{color:x.name==='其他'?'#98A5AB':TEAL}}})}]};
+  } else {
+    dopt={grid:{left:0,right:0,top:0,bottom:0},xAxis:{show:false,type:'value'},yAxis:{show:false,type:'category',data:[]},
+      tooltip:{trigger:'item',formatter:function(p){return p.marker+'<b>'+p.name+'</b><br>'+vfmt(p.value)+' '+u+'，占 '+p.percent+'%'}},
+      legend:{type:'scroll',bottom:0,textStyle:{color:INK}},
+      series:[{type:'pie',radius:['38%','68%'],center:['50%','44%'],avoidLabelOverlap:true,itemStyle:{borderColor:'#F6F9F9',borderWidth:2},
+        label:{color:INK,formatter:'{b}\n{d}%',fontSize:11},
+        data:items.map(function(x,i){return {name:x.name,value:x.value,itemStyle:{color:x.name==='其他'?'#98A5AB':pal[i%pal.length]}}})}]};
+  }
+  ch.Drug.setOption(Object.assign({},base,dopt),{notMerge:true});
+
+  /* heatmap: county x year */
+  var years=[]; for(i=st.lo;i<=st.hi;i++){ var y=yearOf(i); if(years.indexOf(y)<0) years.push(y); }
+  var cTot={}; Object.keys(heat).forEach(function(k){var c=+k.split('|')[1]; cTot[c]=(cTot[c]||0)+heat[k]});
+  var cRows=Object.keys(cTot).map(Number).filter(function(c){return cTot[c]>0}).sort(function(a,b){return cTot[b]-cTot[a]});
+  var cells=[], vals=[];
+  Object.keys(heat).forEach(function(k){ var p=k.split('|'); var xi=years.indexOf(p[0]), yi=cRows.indexOf(+p[1]); if(xi>=0&&yi>=0&&heat[k]>0){cells.push([xi,yi,heat[k]]);vals.push(heat[k]);} });
+  vals.sort(function(a,b){return a-b});
+  var cap=vals.length?vals[Math.min(vals.length-1,Math.floor(vals.length*.95))]:1;
+  var hh=Math.max(260,cRows.length*24+110);
+  $('chHeat').style.height=hh+'px'; ch.Heat.resize();
+  $('heatHint').textContent=(st.metric==='n'?'每格＝該縣市該年的查獲件數':'每格＝該縣市該年的查獲重量（公斤）');
+  ch.Heat.setOption(Object.assign({},base,{
+    grid:{left:84,right:20,top:8,bottom:92},
+    tooltip:{formatter:function(p){return '<b>'+C[cRows[p.value[1]]]+'・'+years[p.value[0]]+(years[p.value[0]]==='2013前'?'':' 年')+'</b><br>'+vfmt(p.value[2])+' '+u}},
+    xAxis:Object.assign({type:'category',data:years,splitArea:{show:false},axisLabel:{color:INK2}},axisName('年'),{nameLocation:'middle',nameGap:30}),
+    yAxis:{type:'category',inverse:true,data:cRows.map(function(c){return C[c]}),axisLabel:{color:INK,interval:0},axisTick:{show:false}},
+    visualMap:{min:0,max:cap,calculable:false,orient:'horizontal',left:'center',bottom:0,itemWidth:14,itemHeight:180,
+      text:['高（'+u+'）','低'],textStyle:{color:INK2},inRange:{color:['#E4EFF0','#8FBFC4','#1F6F78','#0F3F49']},formatter:function(v){return vfmt(v)}},
+    series:[{type:'heatmap',data:cells,itemStyle:{borderColor:'#F6F9F9',borderWidth:1.5},emphasis:{itemStyle:{borderColor:INK,borderWidth:2}}}]
+  }),{replaceMerge:['series']});
+}
+syncRange(); update();
+})();
+</script>
+</body>
+</html>

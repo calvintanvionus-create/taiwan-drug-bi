@@ -1,0 +1,285 @@
+{
+ "files": 46,
+ "raw_rows": 556059,
+ "dropped_duplicates": 4578,
+ "dropped_with_zero_weight": 1075,
+ "output_rows": 551481,
+ "per_file": {
+  "npa_drug_crime_10401-10403.csv": {
+   "raw_rows": 12727,
+   "raw_weight_g": 2201903.12,
+   "dropped_rows": 146,
+   "dropped_weight_g": 541.13
+  },
+  "npa_drug_crime_10404-10406.csv": {
+   "raw_rows": 15203,
+   "raw_weight_g": 1105004.42,
+   "dropped_rows": 89,
+   "dropped_weight_g": 188.71
+  },
+  "npa_drug_crime_10407-10409.csv": {
+   "raw_rows": 17094,
+   "raw_weight_g": 2150660.39,
+   "dropped_rows": 174,
+   "dropped_weight_g": 148.54
+  },
+  "npa_drug_crime_10410-10412.csv": {
+   "raw_rows": 16180,
+   "raw_weight_g": 2172975.96,
+   "dropped_rows": 89,
+   "dropped_weight_g": 78652.75
+  },
+  "npa_drug_crime_10501-10503.csv": {
+   "raw_rows": 13498,
+   "raw_weight_g": 1593708.55,
+   "dropped_rows": 63,
+   "dropped_weight_g": 69.84
+  },
+  "npa_drug_crime_10504-10506.csv": {
+   "raw_rows": 17195,
+   "raw_weight_g": 574851.78,
+   "dropped_rows": 164,
+   "dropped_weight_g": 90.94
+  },
+  "npa_drug_crime_10507-10509.csv": {
+   "raw_rows": 19259,
+   "raw_weight_g": 2028405.93,
+   "dropped_rows": 112,
+   "dropped_weight_g": 30.55
+  },
+  "npa_drug_crime_10510-10512.csv": {
+   "raw_rows": 16790,
+   "raw_weight_g": 419132.49,
+   "dropped_rows": 133,
+   "dropped_weight_g": 25.34
+  },
+  "npa_drug_crime_10601-10603.csv": {
+   "raw_rows": 16718,
+   "raw_weight_g": 2907339.83,
+   "dropped_rows": 131,
+   "dropped_weight_g": 586.16
+  },
+  "npa_drug_crime_10604-10606.csv": {
+   "raw_rows": 16798,
+   "raw_weight_g": 4854795.72,
+   "dropped_rows": 217,
+   "dropped_weight_g": 990774.54
+  },
+  "npa_drug_crime_10607-10609.csv": {
+   "raw_rows": 23197,
+   "raw_weight_g": 1749736.64,
+   "dropped_rows": 596,
+   "dropped_weight_g": 6284.12
+  },
+  "npa_drug_crime_10610-10612.csv": {
+   "raw_rows": 16635,
+   "raw_weight_g": 2109426.16,
+   "dropped_rows": 249,
+   "dropped_weight_g": 186.13
+  },
+  "npa_drug_crime_10701-10703.csv": {
+   "raw_rows": 16494,
+   "raw_weight_g": 3596312.37,
+   "dropped_rows": 84,
+   "dropped_weight_g": 158.43
+  },
+  "npa_drug_crime_10704-10706.csv": {
+   "raw_rows": 17931,
+   "raw_weight_g": 11404206.97,
+   "dropped_rows": 122,
+   "dropped_weight_g": 137.85
+  },
+  "npa_drug_crime_10707-10709.csv": {
+   "raw_rows": 19457,
+   "raw_weight_g": 2039004.29,
+   "dropped_rows": 141,
+   "dropped_weight_g": 284.18
+  },
+  "npa_drug_crime_10710-10712.csv": {
+   "raw_rows": 14285,
+   "raw_weight_g": 5151170.97,
+   "dropped_rows": 258,
+   "dropped_weight_g": 3002134.53
+  },
+  "npa_drug_crime_10801-10803.csv": {
+   "raw_rows": 15544,
+   "raw_weight_g": 3142615.77,
+   "dropped_rows": 113,
+   "dropped_weight_g": 97345.33
+  },
+  "npa_drug_crime_10804-10806.csv": {
+   "raw_rows": 14823,
+   "raw_weight_g": 3709501.35,
+   "dropped_rows": 154,
+   "dropped_weight_g": 326.21
+  },
+  "npa_drug_crime_10807-10809.csv": {
+   "raw_rows": 15933,
+   "raw_weight_g": 2569240.67,
+   "dropped_rows": 143,
+   "dropped_weight_g": 132.21
+  },
+  "npa_drug_crime_10810-10812.csv": {
+   "raw_rows": 12428,
+   "raw_weight_g": 2241378.82,
+   "dropped_rows": 133,
+   "dropped_weight_g": 247.65
+  },
+  "npa_drug_crime_10901-10903.csv": {
+   "raw_rows": 12853,
+   "raw_weight_g": 1394888.28,
+   "dropped_rows": 121,
+   "dropped_weight_g": 368.52
+  },
+  "npa_drug_crime_10904-10906.csv": {
+   "raw_rows": 14819,
+   "raw_weight_g": 2550753.82,
+   "dropped_rows": 97,
+   "dropped_weight_g": 1201.5
+  },
+  "npa_drug_crime_10907-10909.csv": {
+   "raw_rows": 15138,
+   "raw_weight_g": 6844093.36,
+   "dropped_rows": 71,
+   "dropped_weight_g": 227.4
+  },
+  "npa_drug_crime_10910-10912.csv": {
+   "raw_rows": 11854,
+   "raw_weight_g": 831230.78,
+   "dropped_rows": 85,
+   "dropped_weight_g": 373.35
+  },
+  "npa_drug_crime_11001-11003.csv": {
+   "raw_rows": 11541,
+   "raw_weight_g": 1967538.03,
+   "dropped_rows": 92,
+   "dropped_weight_g": 165.24
+  },
+  "npa_drug_crime_11004-11006.csv": {
+   "raw_rows": 10770,
+   "raw_weight_g": 1773293.98,
+   "dropped_rows": 86,
+   "dropped_weight_g": 216.1
+  },
+  "npa_drug_crime_11007-11009.csv": {
+   "raw_rows": 11632,
+   "raw_weight_g": 3068349.12,
+   "dropped_rows": 63,
+   "dropped_weight_g": 535.16
+  },
+  "npa_drug_crime_11010-11012.csv": {
+   "raw_rows": 12883,
+   "raw_weight_g": 1470574.55,
+   "dropped_rows": 80,
+   "dropped_weight_g": 75.62
+  },
+  "npa_drug_crime_11101-11103.csv": {
+   "raw_rows": 6400,
+   "raw_weight_g": 235493.99,
+   "dropped_rows": 15,
+   "dropped_weight_g": 1.92
+  },
+  "npa_drug_crime_11104-11106.csv": {
+   "raw_rows": 5748,
+   "raw_weight_g": 2235866.09,
+   "dropped_rows": 16,
+   "dropped_weight_g": 10.67
+  },
+  "npa_drug_crime_11107-11109.csv": {
+   "raw_rows": 7367,
+   "raw_weight_g": 917188.23,
+   "dropped_rows": 43,
+   "dropped_weight_g": 65.71
+  },
+  "npa_drug_crime_11110-11112.csv": {
+   "raw_rows": 5222,
+   "raw_weight_g": 190610.31,
+   "dropped_rows": 19,
+   "dropped_weight_g": 623.42
+  },
+  "npa_drug_crime_11201-11203.csv": {
+   "raw_rows": 5962,
+   "raw_weight_g": 213667.48,
+   "dropped_rows": 31,
+   "dropped_weight_g": 386.11
+  },
+  "npa_drug_crime_11204-11206.csv": {
+   "raw_rows": 6106,
+   "raw_weight_g": 444333.53,
+   "dropped_rows": 31,
+   "dropped_weight_g": 220.92
+  },
+  "npa_drug_crime_11207-11209.csv": {
+   "raw_rows": 6299,
+   "raw_weight_g": 826451.6,
+   "dropped_rows": 27,
+   "dropped_weight_g": 49.74
+  },
+  "npa_drug_crime_11210-11212.csv": {
+   "raw_rows": 5391,
+   "raw_weight_g": 627982.2,
+   "dropped_rows": 28,
+   "dropped_weight_g": 31.17
+  },
+  "npa_drug_crime_11301-11303.csv": {
+   "raw_rows": 5669,
+   "raw_weight_g": 450105.22,
+   "dropped_rows": 29,
+   "dropped_weight_g": 27.02
+  },
+  "npa_drug_crime_11304-11306.csv": {
+   "raw_rows": 5266,
+   "raw_weight_g": 305529.04,
+   "dropped_rows": 40,
+   "dropped_weight_g": 394.97
+  },
+  "npa_drug_crime_11307-11309.csv": {
+   "raw_rows": 6001,
+   "raw_weight_g": 274564.96,
+   "dropped_rows": 53,
+   "dropped_weight_g": 69.19
+  },
+  "npa_drug_crime_11310-11312.csv": {
+   "raw_rows": 7188,
+   "raw_weight_g": 416305.889,
+   "dropped_rows": 29,
+   "dropped_weight_g": 351.16
+  },
+  "npa_drug_crime_11401-11403.csv": {
+   "raw_rows": 7270,
+   "raw_weight_g": 423957.1827,
+   "dropped_rows": 66,
+   "dropped_weight_g": 510.63
+  },
+  "npa_drug_crime_11404-11406.csv": {
+   "raw_rows": 8594,
+   "raw_weight_g": 2142756.5668,
+   "dropped_rows": 15,
+   "dropped_weight_g": 272.7
+  },
+  "npa_drug_crime_11407-11409.csv": {
+   "raw_rows": 8977,
+   "raw_weight_g": 437455.355,
+   "dropped_rows": 17,
+   "dropped_weight_g": 93.71
+  },
+  "npa_drug_crime_11410-11412.csv": {
+   "raw_rows": 9301,
+   "raw_weight_g": 356428.455,
+   "dropped_rows": 37,
+   "dropped_weight_g": 121.71
+  },
+  "npa_drug_crime_11501-11503.csv": {
+   "raw_rows": 8777,
+   "raw_weight_g": 354017.5827,
+   "dropped_rows": 43,
+   "dropped_weight_g": 150.49
+  },
+  "npa_drug_crime_11504-11506.csv": {
+   "raw_rows": 10842,
+   "raw_weight_g": 1075615.9687,
+   "dropped_rows": 33,
+   "dropped_weight_g": 125.04
+  }
+ }
+}

@@ -1,0 +1,3 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10804-10806.csv,7329,5878,毒品,2003-05-15,2003,2,5,0920515,苗栗縣,苑裡鎮,苗栗縣苑裡鎮,公路(省、縣、鄉、鎮道,,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10804-10806.csv,7330,5879,毒品,2003-05-15,2003,2,5,0920515,苗栗縣,苑裡鎮,苗栗縣苑裡鎮,公路(省、縣、鄉、鎮道,,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False

@@ -1,0 +1,8 @@
+﻿source_file,source_line,case_no,case_type,oc_date,year,quarter,month,roc_date_raw,county,district,address,place1,place2,place3,suspects,drug_raw,drug_name,drug_level,weight_g,weight_kg,date_day_unknown,date_outlier,weight_zero,name_garbled
+npa_drug_crime_10404-10406.csv,13075,10561,毒品,2006-01-10,2006,1,1,0950110,桃園市,八德區,桃園市八德區,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10501-10503.csv,6578,5313,毒品,2006-04-26,2006,2,4,0950426,臺中市,潭子區,臺中市潭子區,公路(省、縣、鄉、鎮道,,,1,海洛因,海洛因,第一級,0.0,0.0,False,True,True,False
+npa_drug_crime_10610-10612.csv,12803,10375,毒品,2006-06-15,2006,2,6,0950615,桃園市,中壢區,桃園市中壢區,普通住宅(一、二層樓),,,1,甲基安非他命,甲基安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_10704-10706.csv,4565,3685,毒品,2006-06-21,2006,2,6,0950621,彰化縣,彰化市,彰化縣彰化市,透天厝,,,1,海洛因,海洛因,第一級,3.75,0.00375,False,True,False,False
+npa_drug_crime_10707-10709.csv,3935,3278,毒品,2006-06-15,2006,2,6,0950615,彰化縣,彰化市,彰化縣彰化市,公路(省、縣、鄉、鎮道,,街道馬路,1,海洛因,海洛因,第一級,0.0,0.0,False,True,True,False
+npa_drug_crime_11001-11003.csv,6065,5055,毒品,2006-04-30,2006,2,4,0950430,新北市,中和區,新北市中和區,普通住宅(一、二層樓),,,1,安非他命,安非他命,第二級,0.0,0.0,False,True,True,False
+npa_drug_crime_11010-11012.csv,3317,2726,毒品,2006-06-15,2006,2,6,0950615,彰化縣,彰化市,彰化縣彰化市,公路(省、縣、鄉、鎮道,,門口(出入口),2,海洛因,海洛因,第一級,0.0,0.0,False,True,True,False
